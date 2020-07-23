@@ -26,8 +26,8 @@ class ClusterBase(object):
         raise NotImplementedError
 
     @property
-    def master(self):
-        """Returns the host object of the current master host"""
+    def main(self):
+        """Returns the host object of the current main host"""
         raise NotImplementedError
 
     def hosts(self):
@@ -75,7 +75,7 @@ class ClusterBase(object):
             'cluster_type',
             'admins',
             'name',
-            'master',
+            'main',
             'hosts',
             'problem_hosts',
             'queues',

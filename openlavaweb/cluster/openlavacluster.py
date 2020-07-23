@@ -161,8 +161,8 @@ def raise_cluster_exception(code, message):
         44: "Unknown event",
         45: "Bad event format",
         46: "End of file",
-        47: "Master batch daemon internal error",
-        48: "Slave batch daemon internal error",
+        47: "Main batch daemon internal error",
+        48: "Subordinate batch daemon internal error",
         49: "Batch library internal error",
         50: "Failed in an LSF library call",
         51: "System call failed",
@@ -185,7 +185,7 @@ def raise_cluster_exception(code, message):
         68: "Job parameters cannot be changed now; non-repetitive job is running",
         69: "Modified parameters have not been used",
         70: "Job cannot be run more than once",
-        71: "Unknown cluster name or cluster master",
+        71: "Unknown cluster name or cluster main",
         72: "Modified parameters are being used",
         73: "Queue does not have enough per-host job slots",
         74: "Mbatchd could not find the message that SBD mentions about",
@@ -245,7 +245,7 @@ def raise_cluster_exception(code, message):
         128: "You must set LSB_JOB_MEMLIMIT in lsf.conf to modify the memory limit of a running job",
         129: "No error file specified before job dispatch. Error file does not exist, so error file name\
          cannot be changed",
-        130: "The host is locked by master LIM",
+        130: "The host is locked by main LIM",
         131: "Dependent arrays do not have the same size",
     }
     e = ClusterException
@@ -273,8 +273,8 @@ class Cluster(ClusterBase):
         return lslib.ls_getclustername()
 
     @property
-    def master(self):
-        return Host(lslib.ls_getmastername())
+    def main(self):
+        return Host(lslib.ls_getmainname())
 
     def hosts(self):
         """Returns an array of hosts that are part of the cluster"""
@@ -914,8 +914,8 @@ class HostStatus(NumericStatus):
           - Running exclusive job.
         * - 0x200
           - HOST_STAT_LOCKED_MASTER
-          - Locked by Master LIM
-          - Lim locked by master LIM.
+          - Locked by Main LIM
+          - Lim locked by main LIM.
 
     """
     states = {
@@ -974,9 +974,9 @@ class HostStatus(NumericStatus):
             'description': "Running exclusive job.  ",
         },
         0x200: {
-            'friendly': 'Locked by Master LIM',
+            'friendly': 'Locked by Main LIM',
             'name': 'HOST_STAT_LOCKED_MASTER',
-            'description': "Lim locked by master LIM.  ",
+            'description': "Lim locked by main LIM.  ",
         },
     }
 
@@ -1043,8 +1043,8 @@ class JobStatus(NumericStatus):
        * - 0x10000
          - Unknown
          - JOB_STAT_UNKWN
-         - The slave batch daemon (sbatchd) on the host on which the job is processed has lost
-           contact with the master batch daemon (mbatchd).
+         - The subordinate batch daemon (sbatchd) on the host on which the job is processed has lost
+           contact with the main batch daemon (mbatchd).
 
     """
     states = {
@@ -1108,8 +1108,8 @@ class JobStatus(NumericStatus):
         0x10000: {
             'friendly': "Unknown",
             'name': "JOB_STAT_UNKWN",
-            'description': "The slave batch daemon (sbatchd) on the host on which the job is processed has lost \
-            contact with the master batch daemon (mbatchd).",
+            'description': "The subordinate batch daemon (sbatchd) on the host on which the job is processed has lost \
+            contact with the main batch daemon (mbatchd).",
         },
     }
 
@@ -4954,7 +4954,7 @@ class Host(SingleArgMemoized, HostBase):
             >>> from openlavacluster import Host
             >>> host = Host.get_host_list()[0]
             >>> Host.get_host_list()
-            [master, comp00, comp01, comp02, comp03, comp04]
+            [main, comp00, comp01, comp02, comp03, comp04]
 
         :return: List of :py:class:`cluster.openlavacluster.Host` Objects, one for each host on the cluster.
         :rtype: list
@@ -4994,7 +4994,7 @@ class Host(SingleArgMemoized, HostBase):
             >>> host.open()
             Traceback (most recent call last):
               ...
-            cluster.PermissionDeniedError: Unable to open host: master: User permission denied
+            cluster.PermissionDeniedError: Unable to open host: main: User permission denied
 
         :return: 0 on success
         :raises: :py:exc:`cluster.openlavacluster.ClusterException` when host cannot be opened.
@@ -5016,7 +5016,7 @@ class Host(SingleArgMemoized, HostBase):
             >>> host.close()
             Traceback (most recent call last):
               ...
-            cluster.PermissionDeniedError: Unable to close host: master: User permission denied
+            cluster.PermissionDeniedError: Unable to close host: main: User permission denied
 
         :return: 0 on success
         :raises: :py:exc:`cluster.openlavacluster.ClusterException` when host cannot be closed.

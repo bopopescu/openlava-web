@@ -762,7 +762,7 @@ def get_job_list(request, job_id=0):
                         "email_user": "",
                         "end_time": 0,
                         "error_file_name": "/dev/null",
-                        "execution_cwd": "//master/home/irvined/openlava-web/tests",
+                        "execution_cwd": "//main/home/irvined/openlava-web/tests",
                         "execution_home_directory": "",
                         "execution_hosts": [],
                         "execution_user_id": 1000,
@@ -922,9 +922,9 @@ def get_job_list(request, job_id=0):
                             "type": "JobStatus"
                         },
                         "submission_host": {
-                            "name": "master",
+                            "name": "main",
                             "type": "Host",
-                            "url": "/olweb/olw/hosts/master"
+                            "url": "/olweb/olw/hosts/main"
                         },
                         "submit_home_directory": "/home/irvined",
                         "submit_time": 1414241607,
@@ -991,7 +991,7 @@ def get_job_list(request, job_id=0):
                         "email_user": "",
                         "end_time": 0,
                         "error_file_name": "/dev/null",
-                        "execution_cwd": "//master/home/irvined/openlava-web/tests",
+                        "execution_cwd": "//main/home/irvined/openlava-web/tests",
                         "execution_home_directory": "",
                         "execution_hosts": [],
                         "execution_user_id": 1000,
@@ -1151,9 +1151,9 @@ def get_job_list(request, job_id=0):
                             "type": "JobStatus"
                         },
                         "submission_host": {
-                            "name": "master",
+                            "name": "main",
                             "type": "Host",
-                            "url": "/olweb/olw/hosts/master"
+                            "url": "/olweb/olw/hosts/main"
                         },
                         "submit_home_directory": "/home/irvined",
                         "submit_time": 1414242197,
@@ -1220,7 +1220,7 @@ def get_job_list(request, job_id=0):
                         "email_user": "",
                         "end_time": 0,
                         "error_file_name": "/dev/null",
-                        "execution_cwd": "//master/home/irvined/openlava-web/tests",
+                        "execution_cwd": "//main/home/irvined/openlava-web/tests",
                         "execution_home_directory": "",
                         "execution_hosts": [],
                         "execution_user_id": 1000,
@@ -1387,9 +1387,9 @@ def get_job_list(request, job_id=0):
                             "type": "JobStatus"
                         },
                         "submission_host": {
-                            "name": "master",
+                            "name": "main",
                             "type": "Host",
-                            "url": "/olweb/olw/hosts/master"
+                            "url": "/olweb/olw/hosts/main"
                         },
                         "submit_home_directory": "/home/irvined",
                         "submit_time": 1414243874,
